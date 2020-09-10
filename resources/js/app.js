@@ -3,6 +3,9 @@ window.Vue = require("vue");
 import Vuetify from "vuetify";
 Vue.use(Vuetify);
 
+import User from "./helpers/User";
+window.User = User;
+
 import router from "./router/router";
 
 // import { Plugin } from "vue-fragment";
@@ -30,5 +33,5 @@ Vue.component("Home", require("./components/Home.vue").default);
 const app = new Vue({
     el: "#app",
     vuetify: new Vuetify(),
-    router,
+    router
 });
