@@ -1,6 +1,7 @@
 <template>
     <Fragment>
         <Toolbar />
+        <router-view></router-view>
         <AppFooter />
     </Fragment>
 </template>
