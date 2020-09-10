@@ -14,14 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::apiResource('/question', QuestionController::class);
+Route::apiResource('/question', 'QuestionController');
 
-Route::apiResource('/category', CategoryController::class);
+Route::apiResource('/category', 'CategoryController');
 
-Route::apiResource('/question/{question}/reply', ReplyController::class);
+Route::apiResource('/question/{question}/reply', 'ReplyController');
 
-Route::post('/like/{reply}', [LikeController::class, 'likeIt']);
-Route::delete('/like/{reply}', [LikeController::class, 'unLikeIt']);
+Route::post('/like/{reply}', 'LikeController@likeIt');
+Route::delete('/like/{reply}', 'LikeController@unLikeIt');
 
 
 Route::group(
