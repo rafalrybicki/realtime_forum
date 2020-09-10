@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use Illuminate\Http\Request;
+use App\Http\Resources\CategoryResource;
 
 class CategoryController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('JWT');
+        $this->middleware('JWT', ['except' => ['index', 'show']]);
     }
 
     /**
@@ -21,7 +22,6 @@ class CategoryController extends Controller
     {
         return CategoryResource::collection(Category::latest()->get());
     }
-
 
     /**
      * Store a newly created resource in storage.
@@ -49,7 +49,6 @@ class CategoryController extends Controller
     {
         return new CategoryResource($category);
     }
-
 
 
     /**

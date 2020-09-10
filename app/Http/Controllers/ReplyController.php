@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Reply;
+use App\Question;
 use Illuminate\Http\Request;
+use App\Http\Resources\ReplyResource;
 
 class ReplyController extends Controller
 {
@@ -19,7 +21,6 @@ class ReplyController extends Controller
      */
     public function index(Question $question)
     {
-
         return ReplyResource::collection($question->replies);
     }
 
