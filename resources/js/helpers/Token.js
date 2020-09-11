@@ -3,7 +3,8 @@ class Token {
         const payload = this.payload(token);
         if (payload) {
             return payload.iss ===
-                "http://http://127.0.0.1:8000//api/auth/login"
+                "http://http://127.0.0.1:8000//api/auth/login" ||
+                "http://http://127.0.0.1:8000//api/auth/signup"
                 ? true
                 : false;
         }

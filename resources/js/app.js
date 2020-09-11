@@ -1,3 +1,4 @@
+import Vue from "vue";
 window.Vue = require("vue");
 
 import Vuetify from "vuetify";
@@ -5,6 +6,11 @@ Vue.use(Vuetify);
 
 import User from "./helpers/User";
 window.User = User;
+
+import axios from "axios";
+window.axios = axios;
+
+window.EventBus = new Vue();
 
 import router from "./router/router";
 
