@@ -1,6 +1,6 @@
 class AppStorage {
     storeToken(token) {
-        localStorage.setItem("tpken", token);
+        localStorage.setItem("token", token);
     }
 
     storeUser(user) {

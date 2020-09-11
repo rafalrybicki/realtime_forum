@@ -1,9 +1,9 @@
 <template>
-    <Fragment>
-        <Toolbar />
+    <fragment>
+        <toolbar />
         <router-view></router-view>
-        <AppFooter />
-    </Fragment>
+        <app-footer />
+    </fragment>
 </template>
 
 <script>

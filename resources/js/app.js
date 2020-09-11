@@ -1,3 +1,5 @@
+require("./bootstrap");
+
 import Vue from "vue";
 window.Vue = require("vue");
 
@@ -7,10 +9,13 @@ Vue.use(Vuetify);
 import User from "./helpers/User";
 window.User = User;
 
-import axios from "axios";
-window.axios = axios;
-
 window.EventBus = new Vue();
+
+import VueSimplemde from "vue-simplemde";
+Vue.component("vue-simplemde", VueSimplemde);
+
+import md from "marked";
+window.md = md;
 
 import router from "./router/router";
 

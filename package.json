@@ -26,6 +26,7 @@
     "dependencies": {
         "vue-fragment": "^1.5.1",
         "vue-router": "^3.4.3",
+        "vue-simplemde": "^1.1.2",
         "vuetify": "^2.3.10"
     }
 }
