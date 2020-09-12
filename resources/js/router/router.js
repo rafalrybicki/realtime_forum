@@ -5,7 +5,8 @@ import Logout from "../components/auth/Logout";
 import SignUp from "../components/auth/SignUp";
 import Forum from "../components/forum/Forum";
 import Read from "../components/forum/Read";
-import Create from "../components/forum/Create";
+import CreateQuestion from "../components/forum/Create";
+import CreateCategory from "../components/category/Create";
 
 Vue.use(VueRouter);
 
@@ -34,7 +35,11 @@ const routes = [
     },
     {
         path: "/ask",
-        component: Create
+        component: CreateQuestion
+    },
+    {
+        path: "/category",
+        component: CreateCategory
     }
 ];
 

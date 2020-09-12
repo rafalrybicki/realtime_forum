@@ -14,7 +14,7 @@
                         :length="meta.total"
                         @input="changePage"
                     ></v-pagination>
-                </div> -->
+            </div>-->
             </v-flex>
 
             <v-flex xs4>

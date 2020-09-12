@@ -1,4 +1,5 @@
 require("./bootstrap");
+import "@mdi/font/css/materialdesignicons.css";
 
 import Vue from "vue";
 window.Vue = require("vue");
@@ -43,6 +44,10 @@ Vue.component("Home", require("./components/Home.vue").default);
 
 const app = new Vue({
     el: "#app",
-    vuetify: new Vuetify(),
+    vuetify: new Vuetify({
+        icons: {
+            iconfont: "mdi"
+        }
+    }),
     router
 });
