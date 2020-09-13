@@ -40,7 +40,6 @@ export default {
          axios
             .get(url)
             .then((res) => {
-               console.log(res);
                this.questions = res.data.data;
                this.meta = res.data.meta;
             })
