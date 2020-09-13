@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Like;
+use App\Reply;
 use Illuminate\Http\Request;
 
 class LikeController extends Controller
@@ -15,8 +16,7 @@ class LikeController extends Controller
     public function likeIt(Reply $reply)
     {
         $reply->like()->create([
-            // 'user_id' =. auth()user()->id();
-            'user_id' => 1
+            'user_id' => auth()->id()
         ]);
         return response('created', 201);
     }
