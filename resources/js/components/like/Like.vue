@@ -2,7 +2,7 @@
    <div>
       <v-btn icon @click="likeIt">
          <v-icon :color="color">mdi-heart</v-icon>
-         {{count}}
+         {{ count }}
       </v-btn>
    </div>
 </template>
@@ -20,6 +20,17 @@ export default {
       color() {
          return this.liked ? "red" : "red lighten-4";
       },
+   },
+   created() {
+      Echo.channel("likeChannel").listen("LikeEvent", (e) => {
+         console.log(e);
+         if (this.content.id === e.id) {
+            e.type === 1 ? this.count++ : this.count--;
+         }
+      });
+      Echo.channel("testChannel").listen("TestEvent", (e) => {
+         console.log(e);
+      });
    },
    methods: {
       likeIt() {

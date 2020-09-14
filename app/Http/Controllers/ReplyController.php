@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Reply;
 use App\Question;
 use Illuminate\Http\Request;
+use App\Events\AddReplyEvent;
+use App\Events\DeleteReplyEvent;
 use App\Http\Resources\ReplyResource;
 use App\Notifications\NewReplyNotification;
 
@@ -39,6 +41,7 @@ class ReplyController extends Controller
         if ($reply->user_id !== $question->user_id) {
             $user->notify(new NewReplyNotification($reply));
         }
+        broadcast(new AddReplyEvent($reply))->toOthers();
         return response(['reply' => new ReplyResource($reply)], 201);
     }
 
@@ -75,6 +78,7 @@ class ReplyController extends Controller
     public function destroy(Question $question, Reply $reply)
     {
         $reply->delete();
+        broadcast(new DeleteReplyEvent($reply->id))->toOthers();
         return response(null, 204);
     }
 }

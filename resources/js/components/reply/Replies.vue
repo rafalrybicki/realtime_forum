@@ -1,6 +1,6 @@
 <template>
    <div>
-      <reply v-for="(reply,index) in content" :key="reply.id" :index="index" :data="reply"></reply>
+      <reply v-for="(reply, index) in replies" :key="reply.id" :index="index" :data="reply"></reply>
    </div>
 </template>
 
@@ -10,7 +10,7 @@ export default {
    props: ["question"],
    data() {
       return {
-         content: this.question.replies,
+         replies: this.question.replies,
       };
    },
    components: { Reply },
@@ -20,16 +20,23 @@ export default {
    methods: {
       listen() {
          EventBus.$on("newReply", (reply) => {
-            this.content.unshift(reply);
+            this.replies.unshift(reply);
          });
          EventBus.$on("deleteReply", (index) => {
             axios
                .delete(
-                  `/api/question/${this.question.slug}/reply/${this.content[index].id}`
+                  `/api/question/${this.question.slug}/reply/${this.replies[index].id}`
                )
                .then((res) => {
-                  this.content.splice(index, 1);
+                  this.replies.splice(index, 1);
                });
+         });
+         Echo.channel("deleteReplyChannel").listen("DeleteReplyEvent", (e) => {
+            const index = this.replies.findIndex((reply) => reply.id === e.id);
+            this.replies.splice(index, 1);
+         });
+         Echo.channel("addReplyChannel").listen("AddReplyEvent", (e) => {
+            this.replies.unshift(e.reply);
          });
       },
    },

@@ -15,6 +15,7 @@
         "laravel/framework": "^7.24",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.3",
+        "pusher/pusher-php-server": "~4.0",
         "tymon/jwt-auth": "^1.0"
     },
     "require-dev": {

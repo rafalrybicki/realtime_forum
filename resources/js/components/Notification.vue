@@ -1,9 +1,9 @@
 <template>
    <div class="text-xs-center">
       <v-menu offset-y>
-         <template v-slot:activator="{ on}">
+         <template v-slot:activator="{ on }">
             <v-icon :color="color" v-on="on">mdi-bell</v-icon>
-            {{unreadCount}}
+            {{ unreadCount }}
          </template>
 
          <v-list>
@@ -40,16 +40,22 @@ export default {
       if (User.loggedIn()) {
          this.getNotifications();
       }
+
+      Echo.private("App.User." + User.id()).notification((notification) => {
+         this.unread.unshift(notification);
+         this.unreadCount++;
+      });
    },
    methods: {
       getNotifications() {
-         axios.post("/api/notifications").then((res) => {
-            console.log(res);
-            this.read = res.data.read;
-            this.unread = res.data.unread;
-            this.unreadCount = res.data.unread.length;
-         });
-         //  .catch((error) => Exception.handle(error));
+         axios
+            .post("/api/notifications")
+            .then((res) => {
+               this.read = res.data.read;
+               this.unread = res.data.unread;
+               this.unreadCount = res.data.unread.length;
+            })
+            .catch((error) => Exception.handle(error));
       },
       readIt(notification) {
          axios.post("/api/markAsRead", { id: notification.id }).then((res) => {
