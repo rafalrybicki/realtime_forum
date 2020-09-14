@@ -2,12 +2,12 @@ class Token {
     isValid(token) {
         const payload = this.payload(token);
         if (payload) {
-            return payload.iss ===
-                "http://http://127.0.0.1:8000//api/auth/login" ||
-                "http://http://127.0.0.1:8000//api/auth/signup"
+            return payload.iss == "http://localhost:8000/api/auth/login" ||
+                "http://localhost:8000/api/auth/signup"
                 ? true
                 : false;
         }
+
         return false;
     }
 
@@ -17,7 +17,10 @@ class Token {
     }
 
     decode(payload) {
-        return JSON.parse(atob(payload));
+        if (this.isBase64(payload)) {
+            return JSON.parse(atob(payload));
+        }
+        return false;
     }
 
     isBase64(str) {
