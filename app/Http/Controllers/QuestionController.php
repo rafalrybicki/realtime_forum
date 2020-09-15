@@ -22,8 +22,7 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        // return response(Question::latest()->get(), 200);
-        return QuestionResource::collection(Question::latest()->get());
+        return  QuestionResource::collection(Question::latest()->paginate(10));
     }
 
     /**

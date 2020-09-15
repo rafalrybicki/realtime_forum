@@ -4,13 +4,13 @@
          <v-flex xs8>
             <question v-for="question in questions" :key="question.path" :data="question"></question>
 
-            <!-- <div class="text-xs-center">
-                    <v-pagination
-                        v-model="meta.current_page"
-                        :length="meta.total"
-                        @input="changePage"
-                    ></v-pagination>
-            </div>-->
+            <div class="text-center">
+               <v-pagination
+                  v-model="meta.current_page"
+                  :length="meta.last_page"
+                  @input="changePage"
+               ></v-pagination>
+            </div>
          </v-flex>
 
          <v-flex xs4>
