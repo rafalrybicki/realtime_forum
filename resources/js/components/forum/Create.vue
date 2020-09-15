@@ -11,7 +11,7 @@
             autocomplete
          ></v-select>
          <vue-simplemde v-model="form.body"></vue-simplemde>
-         <v-btn color="green" type="submit">Create</v-btn>
+         <v-btn color="green" type="submit" :disabled="disabled">Create</v-btn>
       </v-form>
    </v-container>
 </template>
@@ -39,6 +39,11 @@ export default {
             .post("/api/question", this.form)
             .then((res) => this.$router.push(res.data.path))
             .catch((error) => (this.errors = error.response.data.errors));
+      },
+   },
+   computed: {
+      disabled() {
+         return !(this.form.title && this.form.category_id && this.form.body);
       },
    },
 };

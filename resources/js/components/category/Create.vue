@@ -1,9 +1,10 @@
 <template>
    <v-container>
+      <v-alert v-if="errors" type="error" :value="true">Please give category name</v-alert>
       <v-form @submit.prevent="submit">
          <v-text-field label="Category Name" v-model="form.name" type="email" required></v-text-field>
-         <v-btn type="submit" color="pink" v-if="editSlug">Update</v-btn>
-         <v-btn type="submit" color="teal" v-else>Create</v-btn>
+         <v-btn type="submit" color="pink" v-if="editSlug" :disabled="disabled">Update</v-btn>
+         <v-btn type="submit" color="teal" v-else :disabled="disabled">Create</v-btn>
       </v-form>
       <v-card>
          <v-toolbar color="indigo" dark dense>
@@ -37,6 +38,7 @@ export default {
          },
          categories: [],
          editSlug: null,
+         errors: null,
       };
    },
    methods: {
@@ -55,10 +57,14 @@ export default {
          axios
             .post("/api/category", this.form)
             .then((res) => {
+               console.log(res);
                this.categories.unshift(res.data);
                this.form.name = null;
             })
-            .catch((error) => (this.errors = error.response.data.errors));
+            .catch((error) => {
+               console.log(error);
+               this.errors = error.response.data.errors;
+            });
       },
       destroy(slug, index) {
          axios
@@ -78,6 +84,11 @@ export default {
       axios
          .get("/api/category")
          .then((res) => (this.categories = res.data.data));
+   },
+   computed: {
+      disabled() {
+         return !this.form.name;
+      },
    },
 };
 </script>

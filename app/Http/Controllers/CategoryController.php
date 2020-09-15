@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Requests\CategoryRequest;
 use App\Http\Resources\CategoryResource;
 
 class CategoryController extends Controller
@@ -30,7 +31,7 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
         $category = new Category;
         $category->name = $request->name;
@@ -59,7 +60,7 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(CategoryRequest $request, Category $category)
     {
         $category->update(
             [
