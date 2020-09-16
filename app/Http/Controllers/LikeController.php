@@ -29,6 +29,6 @@ class LikeController extends Controller
         $reply->like()->where('user_id', 1)->first()->delete();
         broadcast(new LikeEvent($reply->id, 0))->toOthers();
 
-        // return response(null, 204);
+        return response(null, 204);
     }
 }

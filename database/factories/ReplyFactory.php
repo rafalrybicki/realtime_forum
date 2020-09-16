@@ -8,12 +8,9 @@ use App\Question;
 use Faker\Generator as Faker;
 
 $factory->define(Reply::class, function (Faker $faker) {
-    $users = User::count();
-    $questions = Question::count();
-
     return [
         'body' => $faker->text,
-        'question_id' => rand(1, $questions),
-        'user_id' => rand(1, $users)
+        'user_id' => rand(1, 20),
+        'question_id' => rand(1, 500),
     ];
 });

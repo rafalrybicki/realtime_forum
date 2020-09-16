@@ -17,10 +17,10 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // $this->call(UserSeeder::class);
-        factory(User::class, 10)->create();
-        factory(Category::class, 5)->create();
-        factory(Question::class, 10)->create();
-        factory(Reply::class, 50)->create();
-        factory(Like::class, 100)->create();
+        // factory(User::class, 20)->create();
+        // factory(Category::class, 10)->create();
+        // factory(Question::class, 500)->create();
+        factory(Reply::class, 1000)->create();
+        // factory(Like::class, 2000)->create();
     }
 }

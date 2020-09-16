@@ -17,12 +17,10 @@ class CategoryController extends Controller
         $this->middleware('JWT', ['only' => ['store', 'update', 'destroy']]);
     }
 
-
     public function index()
     {
         return CategoryResource::collection(Category::orderBy('name')->get());
     }
-
 
     public function store(CategoryRequest $request)
     {

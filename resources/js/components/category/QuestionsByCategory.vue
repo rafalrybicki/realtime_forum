@@ -1,7 +1,7 @@
 <template>
    <v-container fluid grid-list-md>
       <v-layout row wrap>
-         <v-flex xs8>
+         <v-flex xs10>
             <list :questions="questions"></list>
             <div class="text-center">
                <v-pagination
@@ -12,7 +12,7 @@
             </div>
          </v-flex>
 
-         <v-flex xs4>
+         <v-flex xs2>
             <Sidebar />
          </v-flex>
       </v-layout>

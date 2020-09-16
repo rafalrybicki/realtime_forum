@@ -12,7 +12,6 @@ class NotificationController extends Controller
         $this->middleware('JWT');
     }
 
-
     public function index()
     {
         return [

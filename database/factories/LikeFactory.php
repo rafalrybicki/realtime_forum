@@ -8,10 +8,8 @@ use App\Reply;
 use Faker\Generator as Faker;
 
 $factory->define(Like::class, function (Faker $faker) {
-    $users = User::count();
-    $replies = Reply::count();
     return [
-        'user_id' => rand(1, $users),
-        'reply_id' => rand(1, $replies)
+        'user_id' => rand(1, 20),
+        'reply_id' => rand(1, 1000)
     ];
 });
