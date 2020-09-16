@@ -22,7 +22,7 @@ class QuestionResource extends JsonResource
             'replies' => ReplyResource::collection($this->replies),
             'reply_count' => $this->replies->count(),
             'body' => $this->body,
-            'created_at' => $this->created_at->diffForHumans(),
+            'created_at' => $this->created_at,
             'user_id' => $this->user->id
         ];
     }

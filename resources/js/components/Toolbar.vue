@@ -1,6 +1,6 @@
 <template>
    <v-toolbar color="indigo accent-4" dark>
-      <!-- <v-toolbar-side-icon></v-toolbar-side-icon> -->
+      <v-app-bar-nav-icon></v-app-bar-nav-icon>
       <v-toolbar-title>
          <router-link class="white--text" to="/">RealtimeForum</router-link>
       </v-toolbar-title>

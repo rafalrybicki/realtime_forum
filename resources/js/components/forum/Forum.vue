@@ -2,8 +2,8 @@
    <v-container fluid grid-list-md>
       <v-layout row wrap>
          <v-flex xs8>
-            <question v-for="question in questions" :key="question.path" :data="question"></question>
-
+            <!-- <question v-for="question in questions" :key="question.path" :data="question"></question> -->
+            <list :questions="questions"></list>
             <div class="text-center">
                <v-pagination
                   v-model="meta.current_page"
@@ -22,15 +22,16 @@
 
 <script>
 import Question from "./Question";
+import List from "./List";
 import Sidebar from "./Sidebar";
 export default {
    data() {
       return {
-         questions: {},
+         questions: [],
          meta: {},
       };
    },
-   components: { Question, Sidebar },
+   components: { Question, Sidebar, List },
    created() {
       this.fetchQuestions();
    },

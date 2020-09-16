@@ -20,7 +20,7 @@ class QuestionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         return  QuestionResource::collection(Question::latest()->paginate(10));
     }

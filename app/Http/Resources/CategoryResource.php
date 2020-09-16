@@ -18,6 +18,7 @@ class CategoryResource extends JsonResource
             'name' => $this->name,
             'slug' => $this->slug,
             'id' => $this->id,
+            'totalCount' => $this->questions->count()
         ];
     }
 }

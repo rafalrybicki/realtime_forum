@@ -7,6 +7,7 @@ import Forum from "../components/forum/Forum";
 import Read from "../components/forum/Read";
 import CreateQuestion from "../components/forum/Create";
 import CreateCategory from "../components/category/Create";
+import QuestionsByCategory from "../components/category/QuestionsByCategory";
 
 Vue.use(VueRouter);
 
@@ -37,9 +38,14 @@ const routes = [
         path: "/ask",
         component: CreateQuestion
     },
+    // {
+    //     path: "/category/",
+    //     component: CreateCategory
+    // },
     {
-        path: "/category",
-        component: CreateCategory
+        path: "/category/:slug",
+        component: QuestionsByCategory,
+        name: "questionsByCategory"
     }
 ];
 

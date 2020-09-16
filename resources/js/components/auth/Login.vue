@@ -20,7 +20,7 @@ export default {
    },
    created() {
       if (User.loggedIn()) {
-         this.$router.push({ name: "forum" });
+         this.$router.push({ name: "/" });
       }
    },
    methods: {
