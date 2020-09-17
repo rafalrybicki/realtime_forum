@@ -1,6 +1,6 @@
 <template>
    <v-card class="mt-3">
-      <router-link :to="data.path">
+      <router-link :to="{name: 'read', params: {slug: data.slug}}">
          <v-card-title primary-title>
             <div>
                <h3 class="mb-0">{{ data.title }}</h3>

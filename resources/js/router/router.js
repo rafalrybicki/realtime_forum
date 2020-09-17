@@ -38,10 +38,10 @@ const routes = [
         path: "/ask",
         component: CreateQuestion
     },
-    // {
-    //     path: "/category/",
-    //     component: CreateCategory
-    // },
+    {
+        path: "/newcategory",
+        component: CreateCategory
+    },
     {
         path: "/category/:slug",
         component: QuestionsByCategory,
