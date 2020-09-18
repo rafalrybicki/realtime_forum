@@ -4,7 +4,7 @@
          <v-flex xs8>
             <!-- <question v-for="question in questions" :key="question.path" :data="question"></question> -->
             <list :questions="questions"></list>
-            <div class="text-center">
+            <div class="text-center mt-3">
                <v-pagination
                   v-model="meta.current_page"
                   :length="meta.last_page"
