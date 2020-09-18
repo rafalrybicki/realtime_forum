@@ -1,7 +1,7 @@
 <template>
    <v-container fluid grid-list-md>
       <v-layout row wrap>
-         <v-flex xs8>
+         <v-flex sm12 md10>
             <!-- <question v-for="question in questions" :key="question.path" :data="question"></question> -->
             <list :questions="questions"></list>
             <div class="text-center mt-3">
@@ -9,11 +9,12 @@
                   v-model="meta.current_page"
                   :length="meta.last_page"
                   @input="changePage"
+                  :total-visible="10"
                ></v-pagination>
             </div>
          </v-flex>
 
-         <v-flex xs4>
+         <v-flex hidden-sm-and-down>
             <Sidebar />
          </v-flex>
       </v-layout>

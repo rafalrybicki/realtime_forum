@@ -1,18 +1,19 @@
 <template>
    <v-container fluid grid-list-md>
       <v-layout row wrap>
-         <v-flex xs10>
+         <v-flex sm12 md10>
             <list :questions="questions"></list>
             <div class="text-center">
                <v-pagination
                   v-model="meta.current_page"
                   :length="meta.last_page"
                   @input="changePage"
+                  :total-visible="10"
                ></v-pagination>
             </div>
          </v-flex>
 
-         <v-flex xs2>
+         <v-flex hidden-sm-and-down>
             <Sidebar />
          </v-flex>
       </v-layout>
