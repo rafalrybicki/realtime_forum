@@ -15,16 +15,13 @@ window.Exception = Exception;
 
 window.EventBus = new Vue();
 
-import VueSimplemde from "vue-simplemde";
-Vue.component("vue-simplemde", VueSimplemde);
+// import VueSimplemde from "vue-simplemde";
+// Vue.component("vue-simplemde", VueSimplemde);
 
-import md from "marked";
-window.md = md;
+// import md from "marked";
+// window.md = md;
 
 import router from "./router/router";
-
-// import { Plugin } from "vue-fragment";
-// Vue.use(Plugin);
 
 /**
  * The following block of code may be used to automatically register your

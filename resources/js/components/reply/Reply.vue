@@ -2,8 +2,8 @@
    <div class="mt-3">
       <v-card>
          <v-card-title>
-            <div class="headline">{{data.user}}</div>
-            <div class="ml-2">said {{data.created_at}}</div>
+            <div class="headline">{{ data.user }}</div>
+            <div class="ml-2">said {{ data.created_at }}</div>
             <v-spacer></v-spacer>
             <like :content="data"></like>
          </v-card-title>
@@ -11,10 +11,10 @@
 
          <edit-reply v-if="editing" :reply="data"></edit-reply>
 
-         <v-card-text v-else v-html="reply"></v-card-text>
+         <v-card-text v-else v-html="reply.reply"></v-card-text>
 
          <v-divider></v-divider>
-         <div v-if="!editing">
+         <div v-if="editing === false">
             <v-card-actions v-if="own">
                <v-btn icon small @click="edit">
                   <v-icon color="orange">mdi-pencil</v-icon>
@@ -36,17 +36,13 @@ export default {
    components: { EditReply, Like },
    data() {
       return {
+         reply: this.data,
          editing: false,
-         beforeEditReplyBody: "",
       };
    },
    computed: {
       own() {
          return User.own(this.data.user_id);
-      },
-
-      reply() {
-         return md.parse(this.data.reply);
       },
    },
    created() {
@@ -63,10 +59,7 @@ export default {
       listen() {
          EventBus.$on("cancelEditing", (reply) => {
             this.editing = false;
-            if (reply !== this.data.reply) {
-               this.data.reply = this.beforeEditReplyBody;
-               this.beforeEditReplyBody = "";
-            }
+            this.reply.reply = reply;
          });
       },
    },

@@ -35,7 +35,7 @@ export default {
    },
    computed: {
       body() {
-         return md.parse(this.data.body);
+         return this.data.body;
       },
    },
    created() {
@@ -60,8 +60,8 @@ export default {
       destroy() {
          axios
             .delete(`/api/question/${this.data.slug}`)
-            .then((res) => this.$router.push("/forum"))
-            .catch((error) => console.log(error.response.data));
+            .then((res) => this.$router.go(-1))
+            .catch((error) => console.log(error.response));
       },
       edit() {
          EventBus.$emit("startEditing");

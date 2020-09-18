@@ -1,6 +1,6 @@
 <template>
    <div>
-      <vue-simplemde v-model="reply.reply"></vue-simplemde>
+      <vue-editor v-model="content"></vue-editor>
       <v-card-actions>
          <v-btn icon small @click="update">
             <v-icon color="green">mdi-content-save</v-icon>
@@ -13,8 +13,17 @@
 </template>
 
 <script>
+import { VueEditor } from "vue2-editor";
 export default {
    props: ["reply"],
+   data() {
+      return {
+         content: this.reply.reply,
+      };
+   },
+   components: {
+      VueEditor,
+   },
    methods: {
       cancel(reply) {
          EventBus.$emit("cancelEditing", reply);
@@ -23,9 +32,11 @@ export default {
          axios
             .patch(
                `/api/question/${this.reply.question_slug}/reply/${this.reply.id}`,
-               { body: this.reply.reply }
+               { body: this.content }
             )
-            .then((res) => this.cancel(this.reply.reply));
+            .then((res) => {
+               this.cancel(this.content);
+            });
       },
    },
 };

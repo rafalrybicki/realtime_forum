@@ -7,7 +7,7 @@
                <div class="grey--text">{{ data.user }} said {{ data.created_at }}</div>
             </div>
          </v-card-title>
-         <v-card-text class="text-black">{{ data.body }}</v-card-text>
+         <v-card-text class="text-black" v-html="data.body "></v-card-text>
       </router-link>
    </v-card>
 </template>
@@ -25,5 +25,9 @@ export default {
 
 .text-black {
    color: black;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   max-height: 100px;
+   padding-bottom: 10px;
 }
 </style>
