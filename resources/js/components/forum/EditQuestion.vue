@@ -6,7 +6,7 @@
             <vue-editor v-model="form.body"></vue-editor>
             <v-card-actions>
                <v-btn icon small type="submit">
-                  <v-icon color="teal">mdi-content-save</v-icon>
+                  <v-icon color="green">mdi-content-save</v-icon>
                </v-btn>
 
                <v-btn icon small @click="cancel">
@@ -35,7 +35,7 @@ export default {
    },
    methods: {
       cancel() {
-         EventBus.$emit("cancelEditing");
+         EventBus.$emit("cancelEditingQuestion");
       },
       update() {
          axios

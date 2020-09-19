@@ -12,7 +12,6 @@
                ></v-pagination>
             </div>
          </v-flex>
-
          <v-flex hidden-sm-and-down>
             <Sidebar />
          </v-flex>

@@ -3,14 +3,14 @@
       <v-container fluid>
          <v-card-title>
             <div>
-               <div class="headline">{{ data.title }}</div>
-               <span class="grey--text">{{ data.user }} said {{ data.created_at }}</span>
+               <div class="headline">{{ this.question.title }}</div>
+               <span class="grey--text">{{ this.question.user }} said {{ this.question.created_at }}</span>
             </div>
             <v-spacer></v-spacer>
-            <v-btn color="teal" dark>{{ replyCount }} Replies</v-btn>
+            <v-btn color="teal" dark>{{ this.question.replies.length }} Replies</v-btn>
          </v-card-title>
 
-         <v-card-text v-html="body"></v-card-text>
+         <v-card-text v-html="this.question.body"></v-card-text>
 
          <v-card-actions v-if="own">
             <v-btn icon small @click="edit">
@@ -26,34 +26,18 @@
 
 <script>
 export default {
-   props: ["data"],
+   props: ["question"],
    data() {
       return {
-         own: User.own(this.data.user_id),
-         replyCount: this.data.reply_count,
+         own: User.own(this.question.user_id),
       };
-   },
-   computed: {
-      body() {
-         return this.data.body;
-      },
    },
    created() {
       EventBus.$on("newReply", () => {
-         this.replyCount++;
+         this.question.reply_count++;
       });
       Echo.private("App.User." + User.id()).notification((notification) => {
-         this.replyCount++;
-      });
-
-      EventBus.$on("deleteReply", () => {
-         this.replyCount--;
-      });
-      Echo.channel("deleteReplyChannel").listen("DeleteReplyEvent", (e) => {
-         this.replyCount--;
-      });
-      Echo.channel("addReplyChannel").listen("AddReplyEvent", (e) => {
-         this.replyCount++;
+         this.question.reply_count++;
       });
    },
    methods: {
@@ -64,7 +48,7 @@ export default {
             .catch((error) => console.log(error.response));
       },
       edit() {
-         EventBus.$emit("startEditing");
+         EventBus.$emit("startEditingQuestion");
       },
    },
 };

@@ -7,6 +7,7 @@ use App\Question;
 use Illuminate\Http\Request;
 use App\Events\AddReplyEvent;
 use App\Events\DeleteReplyEvent;
+use App\Events\UpdateReplyEvent;
 use App\Http\Resources\ReplyResource;
 use App\Notifications\NewReplyNotification;
 
@@ -42,6 +43,7 @@ class ReplyController extends Controller
     {
 
         $reply->update($request->all());
+        broadcast(new UpdateReplyEvent($reply->id, $reply->body))->toOthers();
         return response('update', 202);
     }
 

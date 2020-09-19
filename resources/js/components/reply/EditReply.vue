@@ -15,7 +15,7 @@
 <script>
 import { VueEditor } from "vue2-editor";
 export default {
-   props: ["reply"],
+   props: ["reply", "index"],
    data() {
       return {
          content: this.reply.reply,
@@ -35,7 +35,10 @@ export default {
                { body: this.content }
             )
             .then((res) => {
-               this.cancel(this.content);
+               this.cancel({
+                  body: this.content,
+                  index: this.index,
+               });
             });
       },
    },

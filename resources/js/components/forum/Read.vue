@@ -1,10 +1,10 @@
 <template>
-   <div v-if="question">
+   <div>
       <edit-question v-if="editing" :data="question"></edit-question>
-      <show-question v-else :data="question"></show-question>
+      <show-question v-if="showQuestion" :question="question"></show-question>
       <v-container>
-         <replies :question="question"></replies>
-         <new-reply v-if="loggedIn" :questionSlug="question.slug"></new-reply>
+         <replies v-if="fetched" :question="question"></replies>
+         <new-reply v-if="loggedIn"></new-reply>
       </v-container>
    </div>
 </template>
@@ -20,6 +20,7 @@ export default {
       return {
          question: null,
          editing: false,
+         fetched: false,
       };
    },
    created() {
@@ -30,20 +31,24 @@ export default {
       loggedIn() {
          return User.loggedIn();
       },
+      showQuestion() {
+         return this.fetched && this.editing === false;
+      },
    },
    methods: {
       listen() {
-         EventBus.$on("startEditing", () => {
+         EventBus.$on("startEditingQuestion", () => {
             this.editing = true;
          });
-         EventBus.$on("cancelEditing", () => {
+         EventBus.$on("cancelEditingQuestion", () => {
             this.editing = false;
          });
       },
       getQuestion() {
-         axios
-            .get(`/api/question/${this.$route.params.slug}`)
-            .then((res) => (this.question = res.data.data));
+         axios.get(`/api/question/${this.$route.params.slug}`).then((res) => {
+            this.question = res.data.data;
+            this.fetched = true;
+         });
       },
    },
 };

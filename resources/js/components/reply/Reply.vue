@@ -9,7 +9,7 @@
          </v-card-title>
          <v-divider></v-divider>
 
-         <edit-reply v-if="editing" :reply="data"></edit-reply>
+         <edit-reply v-if="editing" :reply="data" :index="index"></edit-reply>
 
          <v-card-text v-else v-html="reply.reply"></v-card-text>
 
@@ -54,12 +54,13 @@ export default {
       },
       edit() {
          this.editing = true;
-         this.beforeEditReplyBody = this.data.reply;
       },
       listen() {
          EventBus.$on("cancelEditing", (reply) => {
             this.editing = false;
-            this.reply.reply = reply;
+         });
+         Echo.channel("addReplyChannel").listen("updateReplyEvent", (e) => {
+            console.log(e);
          });
       },
    },
