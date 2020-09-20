@@ -15,12 +15,6 @@ window.Exception = Exception;
 
 window.EventBus = new Vue();
 
-// import VueSimplemde from "vue-simplemde";
-// Vue.component("vue-simplemde", VueSimplemde);
-
-// import md from "marked";
-// window.md = md;
-
 import router from "./router/router";
 
 /**

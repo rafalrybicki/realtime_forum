@@ -6,7 +6,7 @@
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <notification v-if="loggedIn"></notification>
-      <div class="hidden-sm-and-down">
+      <div class="hidden-xs-and-down">
          <router-link v-for="item in items" :key="item.title" :to="item.to" v-if="item.show">
             <v-btn text>{{ item.title }}</v-btn>
          </router-link>

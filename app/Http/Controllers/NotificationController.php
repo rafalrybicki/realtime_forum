@@ -15,7 +15,6 @@ class NotificationController extends Controller
     public function index()
     {
         return [
-            'read' => NotificationResource::collection(auth()->user()->readNotifications),
             'unread' => NotificationResource::collection(auth()->user()->unReadNotifications),
         ];
     }

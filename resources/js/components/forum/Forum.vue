@@ -2,7 +2,6 @@
    <v-container fluid grid-list-md>
       <v-layout row wrap>
          <v-flex sm12 md10>
-            <!-- <question v-for="question in questions" :key="question.path" :data="question"></question> -->
             <list :questions="questions"></list>
             <div class="text-center mt-3">
                <v-pagination

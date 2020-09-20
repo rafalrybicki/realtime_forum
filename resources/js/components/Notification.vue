@@ -3,23 +3,18 @@
       <v-menu offset-y>
          <template v-slot:activator="{ on }">
             <v-icon :color="color" v-on="on">mdi-bell</v-icon>
-            {{ unreadCount }}
+            {{ unreadCount > 0 ? unreadCount : '' }}
          </template>
 
          <v-list>
-            <v-list-item v-for="item in unread" :key="item.id">
-               <router-link :to="item.path">
+            <v-list-item v-for="(item, index) in unread" :key="item.id">
+               <router-link :to="{name: 'read', params: {slug: item.question} }">
                   <v-list-item-content>
-                     <v-list-item-title @click="readIt(item)" v-text="item.question"></v-list-item-title>
+                     <v-list-item-title
+                        @click="readIt(item.id, index)"
+                     >{{ item.replyBy }} added a comment</v-list-item-title>
                   </v-list-item-content>
                </router-link>
-            </v-list-item>
-            <v-divider></v-divider>
-
-            <v-list-item v-for="item in read" :key="item.id">
-               <v-list-item-content>
-                  <v-list-item-title v-text="item.question"></v-list-item-title>
-               </v-list-item-content>
             </v-list-item>
          </v-list>
       </v-menu>
@@ -30,7 +25,6 @@
 export default {
    data() {
       return {
-         read: {},
          unread: {},
          unreadCount: 0,
          sound: "http://soundbible.com/mp3/glass_ping-Go445-1207030150.mp3",
@@ -56,16 +50,16 @@ export default {
          axios
             .post("/api/notifications")
             .then((res) => {
-               this.read = res.data.read;
-               this.unread = res.data.unread;
-               this.unreadCount = res.data.unread.length;
+               if (res.data.unread) {
+                  this.unread = res.data.unread;
+                  this.unreadCount = res.data.unread.length;
+               }
             })
             .catch((error) => Exception.handle(error));
       },
-      readIt(notification) {
-         axios.post("/api/markAsRead", { id: notification.id }).then((res) => {
-            this.unread.splice(notification, 1);
-            this.read.push(notification);
+      readIt(id, index) {
+         axios.post("/api/markAsRead", { id }).then((res) => {
+            this.unread.splice(index, 1);
             this.unreadCount--;
          });
       },
