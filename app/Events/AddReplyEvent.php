@@ -15,23 +15,13 @@ class AddReplyEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-
     public $reply;
-    /**
-     * Create a new event instance.
-     *
-     * @return void
-     */
+
     public function __construct($reply)
     {
         $this->reply = new ReplyResource($reply);
     }
 
-    /**
-     * Get the channels the event should broadcast on.
-     *
-     * @return \Illuminate\Broadcasting\Channel|array
-     */
     public function broadcastOn()
     {
         return new Channel('addReplyChannel');

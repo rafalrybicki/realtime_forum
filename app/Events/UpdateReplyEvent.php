@@ -16,22 +16,13 @@ class UpdateReplyEvent implements ShouldBroadcast
 
     public $id;
     public $body;
-    /**
-     * Create a new event instance.
-     *
-     * @return void
-     */
+
     public function __construct($id, $body)
     {
         $this->id = $id;
         $this->body = $body;
     }
 
-    /**
-     * Get the channels the event should broadcast on.
-     *
-     * @return \Illuminate\Broadcasting\Channel|array
-     */
     public function broadcastOn()
     {
         return new Channel('updateReplyChannel');

@@ -31,6 +31,15 @@ class EventServiceProvider extends ServiceProvider
         ],
         'App\Events\UpdateReplyEvent' => [
             'App\Listeners\UpdateReplyEventListener',
+        ],
+        'App\Events\DeleteQuestionEvent' => [
+            'App\Listeners\DeleteQuestionEventListener',
+        ],
+        'App\Events\AddQuestionEvent' => [
+            'App\Listeners\AddQuestionEventListener',
+        ],
+        'App\Events\UpdateQuestionEvent' => [
+            'App\Listeners\UpdateReplyQuestionListener',
         ]
     ];
 

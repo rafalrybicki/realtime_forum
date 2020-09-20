@@ -43,7 +43,7 @@ export default {
    methods: {
       destroy() {
          axios
-            .delete(`/api/question/${this.data.slug}`)
+            .delete(`/api/question/${this.question.slug}`)
             .then((res) => this.$router.go(-1))
             .catch((error) => console.log(error.response));
       },
